@@ -69,7 +69,7 @@ class ResetPassController extends Controller
 
         //201 response
         return response()->json(
-            ['message' => 'Done'],
+            ['message' => 'success'],
             201
         );
 
@@ -99,11 +99,9 @@ class ResetPassController extends Controller
 
         //201 response
         return response()->json(
-            ['message' => 'Password changed'],
+            ['message' => 'The password has been changed successfully'],
             201
         );
     }
-
-
 
 }
