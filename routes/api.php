@@ -44,8 +44,8 @@ Route::group([
 
     Route::apiResource('systems', 'SystemController');
 
-    //quizs of systems
-    Route::get('systems/{system_id}/quizs', 'SystemController');
+    //systems's quizs
+    Route::get('systems/{system_id}/quizs', 'SystemController@quizzes');
 
     /**
      * Quiz API

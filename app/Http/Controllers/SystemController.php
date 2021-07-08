@@ -6,6 +6,7 @@ use App\Http\Requests\System\StoreSystemRequest;
 use App\Http\Requests\System\UpdateSystemRequest;
 use App\Models\System;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SystemController extends Controller
 {
@@ -87,5 +88,23 @@ class SystemController extends Controller
         if ($system) return response()->json([
             'message' => 'success',
         ], 200);
+    }
+
+
+    /**
+     * 
+     */
+
+    public function quizzes($system_id)
+    {
+        $quizzes_of_system = DB::table('systems')
+        ->join('quizzes','systems.id','quizzes.system_id')
+        ->where('quizzes.system_id',$system_id)
+        ->get();
+
+        return response()->json([
+            'message' => 'success',
+            'data' => $quizzes_of_system
+        ]);
     }
 }
