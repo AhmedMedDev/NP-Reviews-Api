@@ -38,8 +38,74 @@ Route::group([
 
 ], function ($router) {
 
+    /**
+     * System API
+     */
+
     Route::apiResource('systems', 'SystemController');
 
-    Route::apiResource('quizs', 'QuizController');
+    //quizs of systems
+    Route::get('systems/{system_id}/quizs', 'SystemController');
+
+    /**
+     * Quiz API
+     */
+
+    // Route::apiResource('quizs', 'QuizController');
+
+    // //questions of quizs
+    // Route::get('quizs/{quiz_id}/questions', 'QuizController');
+
+    // //results of quizs
+    // Route::get('quizs/{quiz_id}/results', 'QuizController');
+
+    // //quiz's result of custom user
+    // Route::get('quizs/{quiz_id}/results/{user_id}', 'QuizController');
+
+    // /**
+    //  * Question API
+    //  */
+
+    // Route::apiResource('questions', 'Questionontroller');
+
+    // //answers of questions
+    // Route::get('questions/{question_id}/answers', 'QuestionController');
+
+    // //incorrect answer of questions
+    // Route::get('questions/{question_id}/incorrectanswer', 'QuestionController');
+
+    // /**
+    //  * Answere API
+    //  */
+
+    // Route::apiResource('answers', 'AnswerController');
+
+    // /**
+    //  * Incorrect Answer API
+    //  */
+
+    // Route::apiResource('incorrectanswer', 'IncorrectanswerController');
+
+    // /**
+    //  * Reult API
+    //  */
+
+    // Route::apiResource('results', 'ResultController');
+
+    // /**
+    //  * User API
+    //  */
+
+    // Route::apiResource('users', 'UserController');
+
+    // //quizs of users
+    // Route::get('users/{user_id}/quizs', 'UserController');
+
+    // //results of users
+    // Route::get('users/{user_id}/results', 'UserController');
+
+    // //user's result of custom quiz
+    // Route::get('users/{user_id}/result/{quiz_id}', 'UserController');
+
     
 });
