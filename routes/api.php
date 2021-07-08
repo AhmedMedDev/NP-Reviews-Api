@@ -31,3 +31,13 @@ Route::group([
     Route::post('resetPassword', 'Auth\ResetPassController@resetPassword');
 
 });
+
+Route::group([
+
+    'middleware' => 'api',
+
+], function ($router) {
+
+    Route::apiResource('systems', 'SystemController');
+    
+});
