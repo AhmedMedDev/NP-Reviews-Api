@@ -39,5 +39,7 @@ Route::group([
 ], function ($router) {
 
     Route::apiResource('systems', 'SystemController');
+
+    Route::apiResource('quizs', 'QuizController');
     
 });

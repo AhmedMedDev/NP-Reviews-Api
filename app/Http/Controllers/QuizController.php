@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\System\StoreSystemRequest;
-use App\Http\Requests\System\UpdateSystemRequest;
-use App\Models\System;
+use App\Http\Requests\Quiz\StoreQuizRequest;
+use App\Http\Requests\Quiz\UpdateQuizRequest;
+use App\Models\Quiz;
 use Illuminate\Http\Request;
 
-class SystemController extends Controller
+class QuizController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +16,12 @@ class SystemController extends Controller
      */
     public function index()
     {
-        $systems = System::get();
+        $quizs = Quiz::get();
 
         return response()->json([
             'message' => 'success',
-            'data' => $systems
-        ], 200);
+            'data' => $quizs
+        ]);
     }
 
     /**
@@ -30,16 +30,16 @@ class SystemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSystemRequest $request)
+    public function store(StoreQuizRequest $request)
     {
         $request = $request->validated();
 
-        $system = System::create( $request );
+        $quiz = Quiz::create( $request );
 
         return response()->json([
             'message' => 'success',
-            'data' => $system
-        ], 200);
+            'data' => $quiz
+        ]);
     }
 
     /**
@@ -48,12 +48,12 @@ class SystemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(System $system)
+    public function show(Quiz $quiz)
     {
         return response()->json([
-            'message' => 'success',
-            'data' => $system
-        ], 200);
+            'message' => 'secess',
+            'data' => $quiz
+        ]);
     }
 
     /**
@@ -63,15 +63,15 @@ class SystemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSystemRequest $request,System $system)
+    public function update(UpdateQuizRequest $request,Quiz $quiz)
     {
         $request = $request->validated();
-
-        $system = $system->update( $request );
+        
+        $quiz = $quiz->update( $request );
 
         return response()->json([
-            'message' => 'success',
-        ], 200);
+            'message' => 'secess',
+        ]);
     }
 
     /**
@@ -80,12 +80,12 @@ class SystemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(System $system)
+    public function destroy(Quiz $quiz)
     {
-        $system = $system->delete( $system );
+        $quiz = $quiz->delete( $quiz );
 
-        if ($system) return response()->json([
+        if ($quiz) return response()->json([
             'message' => 'success',
-        ], 200);
+        ]);
     }
 }

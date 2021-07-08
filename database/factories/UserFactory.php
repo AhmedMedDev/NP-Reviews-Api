@@ -2,6 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Models\Quiz;
 use App\Models\System;
 use App\User;
 use Faker\Generator as Faker;
@@ -28,8 +29,15 @@ use Illuminate\Support\Str;
 //     ];
 // });
 
-$factory->define(System::class, function (Faker $faker) {
+// $factory->define(System::class, function (Faker $faker) {
+//     return [
+//         'Sname' => $faker->name,
+//     ];
+// });
+
+$factory->define(Quiz::class, function (Faker $faker) {
     return [
-        'Sname' => $faker->name,
+        'Qname' => $faker->name,
+        'system_id' => $faker->randomDigit,
     ];
 });
