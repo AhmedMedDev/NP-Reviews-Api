@@ -19,12 +19,10 @@ class SystemController extends Controller
      */
     public function index()
     {
-        $systems = System::get();
-
         return response()->json([
             'message' => 'success',
-            'data' => SystemResource::collection($systems)
-        ], 200);
+            'data' => SystemResource::collection(System::paginate(5))
+        ]);
     }
 
     /**
@@ -102,7 +100,7 @@ class SystemController extends Controller
         $quizzes_of_system = DB::table('systems')
         ->join('quizzes','systems.id','quizzes.system_id')
         ->where('quizzes.system_id',$system_id)
-        ->get();
+        ->paginate(5);
 
         return response()->json([
             'message' => 'success',
