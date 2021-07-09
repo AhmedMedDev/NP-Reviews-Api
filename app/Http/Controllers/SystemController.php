@@ -20,8 +20,8 @@ class SystemController extends Controller
     public function index()
     {
         return response()->json([
-            'message' => 'success',
-            'data' => SystemResource::collection(System::paginate(5))
+            'success' => true,
+            'payload' => SystemResource::collection(System::paginate(5))
         ]);
     }
 
@@ -38,9 +38,11 @@ class SystemController extends Controller
         $system = System::create( $request );
 
         return response()->json([
-            'message' => 'success',
-            'data' => new SystemResource($system)
-        ], 200);
+            'success' => true,
+            'payload' => [
+                'id' => $system->id
+            ]
+        ]);
     }
 
     /**
@@ -52,9 +54,9 @@ class SystemController extends Controller
     public function show(System $system)
     {
         return response()->json([
-            'message' => 'success',
-            'data' => new SystemResource($system)
-        ], 200);
+            'success' => true,
+            'payload' => new SystemResource($system)
+        ]);
     }
 
     /**
@@ -71,8 +73,8 @@ class SystemController extends Controller
         $system = $system->update( $request );
 
         return response()->json([
-            'message' => 'success',
-        ], 200);
+            'success' => true,
+        ]);
     }
 
     /**
@@ -86,13 +88,13 @@ class SystemController extends Controller
         $system = $system->delete( $system );
 
         if ($system) return response()->json([
-            'message' => 'success',
-        ], 200);
+            'success' => true,
+        ]);
     }
 
 
     /**
-     * 
+     * Get all Quizzes of Custion System
      */
 
     public function quizzes($system_id)
@@ -103,8 +105,8 @@ class SystemController extends Controller
         ->paginate(5);
 
         return response()->json([
-            'message' => 'success',
-            'data' => SystemsQuizzesResource::collection($quizzes_of_system)
+            'success' => true,
+            'payload' => SystemsQuizzesResource::collection($quizzes_of_system)
         ]);
     }
 }
