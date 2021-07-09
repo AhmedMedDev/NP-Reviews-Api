@@ -7,6 +7,7 @@ use App\Http\Requests\System\UpdateSystemRequest;
 use App\Http\Resources\System\SystemResource;
 use App\Http\Resources\System\SystemsQuizzesResource;
 use App\Models\System;
+use Illuminate\Filesystem\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,12 +20,13 @@ class SystemController extends Controller
      */
     public function index()
     {
+        $systems = DB::table('systems')->paginate(5);
+        
         return response()->json([
             'success' => true,
-            'payload' => SystemResource::collection(System::paginate(5))
+            'payload' => SystemResource::collection($systems)
         ]);
     }
-
     /**
      * Store a newly created resource in storage.
      *
