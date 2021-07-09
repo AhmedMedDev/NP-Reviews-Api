@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\System\StoreSystemRequest;
 use App\Http\Requests\System\UpdateSystemRequest;
+use App\Http\Resources\System\SystemResource;
+use App\Http\Resources\System\SystemsQuizzesResource;
 use App\Models\System;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +23,7 @@ class SystemController extends Controller
 
         return response()->json([
             'message' => 'success',
-            'data' => $systems
+            'data' => SystemResource::collection($systems)
         ], 200);
     }
 
@@ -39,7 +41,7 @@ class SystemController extends Controller
 
         return response()->json([
             'message' => 'success',
-            'data' => $system
+            'data' => new SystemResource($system)
         ], 200);
     }
 
@@ -53,7 +55,7 @@ class SystemController extends Controller
     {
         return response()->json([
             'message' => 'success',
-            'data' => $system
+            'data' => new SystemResource($system)
         ], 200);
     }
 
@@ -104,7 +106,7 @@ class SystemController extends Controller
 
         return response()->json([
             'message' => 'success',
-            'data' => $quizzes_of_system
+            'data' => SystemsQuizzesResource::collection($quizzes_of_system)
         ]);
     }
 }
