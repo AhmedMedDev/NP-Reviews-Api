@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Answer\StoreAnswerRequest;
+use App\Http\Requests\Answer\UpdateAnswerRequest;
+use App\Models\Answer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -28,9 +31,15 @@ class AnswerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAnswerRequest $request)
     {
-        
+        $request = $request->validated();
+
+        $answer = Answer::create( $request );
+
+        return response()->json([
+            'success' => true,
+        ]);
     }
 
     /**
@@ -39,20 +48,12 @@ class AnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Answer $answer)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json([
+            'success' => true,
+            'payload' => $answer
+        ]);
     }
 
     /**
@@ -62,9 +63,15 @@ class AnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateAnswerRequest $request, Answer $answer)
     {
-        //
+        $request = $request->validated();
+
+        $answer = $answer->update( $request );
+
+        return response()->json([
+            'success' => true,
+        ]);
     }
 
     /**
@@ -73,8 +80,12 @@ class AnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Answer $answer)
     {
-        //
+        $answer = $answer->delete( $answer );
+
+        if ($answer) return response()->json([
+            'success' => true,
+        ]);
     }
 }
