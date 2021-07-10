@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Question\QuestionResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +19,7 @@ class QuestionController extends Controller
 
         return response()->json([
             'success' => true,
-            'payload' => $questions
+            'payload' => QuestionResource::collection($questions)
 
         ]);
     }
