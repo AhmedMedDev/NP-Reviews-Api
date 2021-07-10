@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Question\QuestionStoreRequest;
 use App\Http\Requests\Question\QuestionUpdateRequest;
+use App\Http\Resources\Question\QuestionAnswerResource;
 use App\Http\Resources\Question\QuestionResource;
 use App\Models\Question;
 use Illuminate\Http\Request;
@@ -23,7 +24,6 @@ class QuestionController extends Controller
         return response()->json([
             'success' => true,
             'payload' => QuestionResource::collection($questions)
-
         ]);
     }
 
@@ -89,6 +89,22 @@ class QuestionController extends Controller
 
         if ($question) return response()->json([
             'success' => true,
+        ]);
+    }
+
+    /**
+     * 
+     */
+    public function answers(Question $question)
+    {
+        $answerOfQuestion = DB::table('questions')
+        ->join('answers','questions.id','answers.question_id')
+        ->where('answers.question_id',$question->id)
+        ->paginate(5);
+
+        return response()->json([
+            'success' => true,
+            'payload' => QuestionAnswerResource::collection($answerOfQuestion)
         ]);
     }
 }

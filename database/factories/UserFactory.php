@@ -2,6 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\System;
@@ -47,5 +48,12 @@ $factory->define(Question::class, function (Faker $faker) {
     return [
         'Qcontent' => $faker->name,
         'quiz_id' => $faker->numberBetween(15,20),
+    ];
+});
+
+$factory->define(Answer::class, function (Faker $faker) {
+    return [
+        'Acontent' => $faker->name,
+        'question_id' => $faker->numberBetween(1,12),
     ];
 });

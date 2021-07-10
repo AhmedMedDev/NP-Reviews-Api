@@ -62,14 +62,14 @@ Route::group([
     //quiz's result of custom user
     //Route::get('quizs/{quiz_id}/results/{user_id}', 'QuizController');
 
-    // /**
-    //  * Question API
-    //  */
+    /**
+     * Question API
+     */
 
     Route::apiResource('questions', 'QuestionController');
 
-    // //answers of questions
-    // Route::get('questions/{question_id}/answers', 'QuestionController');
+    //answers of questions
+    Route::get('questions/{question}/answers', 'QuestionController@answers');
 
     // //incorrect answer of questions
     // Route::get('questions/{question_id}/incorrectanswer', 'QuestionController');
