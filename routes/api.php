@@ -56,17 +56,17 @@ Route::group([
     //quiz's questions 
     Route::get('quizzes/{quiz}/questions', 'QuizController@questions');
 
-    // //results of quizs
-    // Route::get('quizs/{quiz_id}/results', 'QuizController');
+    //results of quizs
+    //Route::get('quizs/{quiz_id}/results', 'QuizController');
 
-    // //quiz's result of custom user
-    // Route::get('quizs/{quiz_id}/results/{user_id}', 'QuizController');
+    //quiz's result of custom user
+    //Route::get('quizs/{quiz_id}/results/{user_id}', 'QuizController');
 
     // /**
     //  * Question API
     //  */
 
-    // Route::apiResource('questions', 'Questionontroller');
+    Route::apiResource('questions', 'QuestionController');
 
     // //answers of questions
     // Route::get('questions/{question_id}/answers', 'QuestionController');
