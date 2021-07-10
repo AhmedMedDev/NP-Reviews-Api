@@ -24,8 +24,8 @@ class UpdateQuizRequest extends FormRequest
     public function rules()
     {
         return [
-            'Qname' => 'required',
-            'system_id ' => 'required',
+            'Qname' => 'string|regex:/^[a-zA-Z ]+$/',
+            'system_id ' => 'exists:App\Models\System,id',
         ];
     }
 }

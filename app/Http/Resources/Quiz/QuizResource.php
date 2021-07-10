@@ -18,10 +18,6 @@ class QuizResource extends JsonResource
             'quiz_id' => $this->id,
             'quiz_name' => $this->Qname,
             'system_id' => $this->system_id,
-            'paginate' => [
-                // 'from' => $this->total(),
-                // 'to' => $this->to
-            ]
         ];
     }
 }
