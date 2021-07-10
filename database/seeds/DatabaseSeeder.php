@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Answer;
+use App\Models\IncorrectAnswer;
 use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\System;
@@ -15,6 +16,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(Answer::class, 10)->create();
+        factory(IncorrectAnswer::class, 10)->create();
     }
 }

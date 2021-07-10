@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Question\QuestionStoreRequest;
 use App\Http\Requests\Question\QuestionUpdateRequest;
 use App\Http\Resources\Question\QuestionAnswerResource;
+use App\Http\Resources\Question\QuestionIncorrectAnswer;
+use App\Http\Resources\Question\QuestionIncorrectAnswerResource;
 use App\Http\Resources\Question\QuestionResource;
 use App\Models\Question;
 use Illuminate\Http\Request;
@@ -93,7 +95,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * 
+     * Get list of Question's answer 
      */
     public function answers(Question $question)
     {
@@ -107,4 +109,21 @@ class QuestionController extends Controller
             'payload' => QuestionAnswerResource::collection($answerOfQuestion)
         ]);
     }
+
+    /**
+     * Get list of Question's incorrect answer
+     */
+    public function incorrectanswers(Question $question)
+    {
+        $incorrectanswersOfQuestion = DB::table('questions')
+        ->join('incorrectanswer','questions.id','incorrectanswer.question_id')
+        ->where('incorrectanswer.question_id',$question->id)
+        ->paginate(5);
+
+        return response()->json([
+            'success' => true,
+            'payload' => QuestionIncorrectAnswerResource::collection($incorrectanswersOfQuestion)
+        ]);
+    }
+
 }

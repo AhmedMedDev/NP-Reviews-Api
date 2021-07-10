@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Models\Answer;
+use App\Models\IncorrectAnswer;
 use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\System;
@@ -54,6 +55,13 @@ $factory->define(Question::class, function (Faker $faker) {
 $factory->define(Answer::class, function (Faker $faker) {
     return [
         'Acontent' => $faker->name,
+        'question_id' => $faker->numberBetween(1,12),
+    ];
+});
+
+$factory->define(IncorrectAnswer::class, function (Faker $faker) {
+    return [
+        'IAcontent' => $faker->name,
         'question_id' => $faker->numberBetween(1,12),
     ];
 });

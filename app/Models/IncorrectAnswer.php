@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class IncorrectAnswer extends Model
 {
+    protected $table = 'incorrectanswer';
+
     /**
      * The attributes that are mass assignable.
      *

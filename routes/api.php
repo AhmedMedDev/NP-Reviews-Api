@@ -68,17 +68,17 @@ Route::group([
 
     Route::apiResource('questions', 'QuestionController');
 
-    //answers of questions
+    //question's answers
     Route::get('questions/{question}/answers', 'QuestionController@answers');
 
-    // //incorrect answer of questions
-    // Route::get('questions/{question_id}/incorrectanswer', 'QuestionController');
+    //question's incorrectanswer
+    Route::get('questions/{question}/incorrectanswer', 'QuestionController@incorrectanswers');
 
-    // /**
-    //  * Answere API
-    //  */
+    /**
+     * Answere API
+     */
 
-    // Route::apiResource('answers', 'AnswerController');
+    Route::apiResource('answers', 'AnswerController');
 
     // /**
     //  * Incorrect Answer API
