@@ -51,7 +51,7 @@ Route::group([
      * Quiz API
      */
 
-    // Route::apiResource('quizs', 'QuizController');
+    Route::apiResource('quizzes', 'QuizController');
 
     // //questions of quizs
     // Route::get('quizs/{quiz_id}/questions', 'QuizController');

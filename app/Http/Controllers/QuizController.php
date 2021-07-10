@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Quiz\StoreQuizRequest;
 use App\Http\Requests\Quiz\UpdateQuizRequest;
+use App\Http\Resources\Quiz\QuizResource;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
@@ -16,11 +18,11 @@ class QuizController extends Controller
      */
     public function index()
     {
-        $quizs = Quiz::get();
-
+        $quizzes = DB::table('quizzes')->paginate(5);
+        
         return response()->json([
-            'message' => 'success',
-            'data' => $quizs
+            'success' => true ,
+            'payload' => QuizResource::collection($quizzes),
         ]);
     }
 
@@ -37,8 +39,8 @@ class QuizController extends Controller
         $quiz = Quiz::create( $request );
 
         return response()->json([
-            'message' => 'success',
-            'data' => $quiz
+            'success' => true,
+            'payload' => new QuizResource($quiz)
         ]);
     }
 
@@ -51,8 +53,8 @@ class QuizController extends Controller
     public function show(Quiz $quiz)
     {
         return response()->json([
-            'message' => 'secess',
-            'data' => $quiz
+            'success' => true,
+            'payload' => new QuizResource($quiz)
         ]);
     }
 
@@ -70,7 +72,7 @@ class QuizController extends Controller
         $quiz = $quiz->update( $request );
 
         return response()->json([
-            'message' => 'secess',
+            'success' => true,
         ]);
     }
 
@@ -85,7 +87,7 @@ class QuizController extends Controller
         $quiz = $quiz->delete( $quiz );
 
         if ($quiz) return response()->json([
-            'message' => 'success',
+            'success' => true,
         ]);
     }
 }
