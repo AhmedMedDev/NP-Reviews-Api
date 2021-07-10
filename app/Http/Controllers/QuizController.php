@@ -100,7 +100,7 @@ class QuizController extends Controller
         $questionsOfQuiz = DB::table('quizzes')
         ->join('questions','quizzes.id','questions.quiz_id')
         ->where('questions.quiz_id',$quiz->id)
-        ->get();
+        ->paginate(5);
 
         return response()->json([
             'success' => true,
