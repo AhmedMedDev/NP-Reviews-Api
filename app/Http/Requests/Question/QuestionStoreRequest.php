@@ -25,7 +25,7 @@ class QuestionStoreRequest extends FormRequest
     {
         return [
             'Qcontent' => 'string|regex:/^[a-zA-Z ]+$/',
-            'quiz_id' => 'exists:App\Models\Quiz,id'
+            'quiz_id' => 'exists:App\Models\Quiz,id',
         ];
     }
 }

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Question\QuestionStoreRequest;
+use App\Http\Requests\Question\QuestionUpdateRequest;
 use App\Http\Resources\Question\QuestionResource;
+use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -30,9 +33,16 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuestionStoreRequest $request)
     {
-        
+        $request = $request->validated();
+
+        $question = Question::create( $request );
+
+        return response()->json([
+            'sucess' => true,
+            'payload' => new QuestionResource($question)
+        ]);
     }
 
     /**
@@ -41,20 +51,12 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Question $question)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json([
+            'sucess' => true,
+            'payload' => new QuestionResource($question)
+        ]);
     }
 
     /**
@@ -64,9 +66,15 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(QuestionUpdateRequest $request, Question $question)
     {
-        //
+        $request = $request->validated();
+
+        $question = $question->update( $request );
+
+        return response()->json([
+            'success' => true,
+        ]);
     }
 
     /**
@@ -75,8 +83,12 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question)
     {
-        //
+        $question = $question->delete();
+
+        if ($question) return response()->json([
+            'success' => true,
+        ]);
     }
 }
