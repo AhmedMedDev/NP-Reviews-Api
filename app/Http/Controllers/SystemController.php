@@ -99,11 +99,11 @@ class SystemController extends Controller
      * Get all Quizzes of Custion System
      */
 
-    public function quizzes($system_id)
+    public function quizzes(System $system)
     {
         $quizzes_of_system = DB::table('systems')
         ->join('quizzes','systems.id','quizzes.system_id')
-        ->where('quizzes.system_id',$system_id)
+        ->where('quizzes.system_id',$system->id)
         ->paginate(5);
 
         return response()->json([

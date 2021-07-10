@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\System;
 use Illuminate\Database\Seeder;
@@ -13,6 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(Quiz::class, 10)->create();
+        factory(Question::class, 10)->create();
     }
 }

@@ -25,7 +25,7 @@ class UpdateQuizRequest extends FormRequest
     {
         return [
             'Qname' => 'string|regex:/^[a-zA-Z ]+$/',
-            'system_id ' => 'exists:App\Models\System,id',
+            // 'system_id ' => 'exists:App\Models\System,id',
         ];
     }
 }

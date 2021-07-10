@@ -45,7 +45,7 @@ Route::group([
     Route::apiResource('systems', 'SystemController');
 
     //systems's quizs
-    Route::get('systems/{system_id}/quizs', 'SystemController@quizzes');
+    Route::get('systems/{system}/quizzes', 'SystemController@quizzes');
 
     /**
      * Quiz API
@@ -53,8 +53,8 @@ Route::group([
 
     Route::apiResource('quizzes', 'QuizController');
 
-    // //questions of quizs
-    // Route::get('quizs/{quiz_id}/questions', 'QuizController');
+    //quiz's questions 
+    Route::get('quizzes/{quiz}/questions', 'QuizController@questions');
 
     // //results of quizs
     // Route::get('quizs/{quiz_id}/results', 'QuizController');

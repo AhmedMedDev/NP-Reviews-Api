@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Quiz\StoreQuizRequest;
 use App\Http\Requests\Quiz\UpdateQuizRequest;
+use App\Http\Resources\Quiz\QuizQuestionsResource;
 use App\Http\Resources\Quiz\QuizResource;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
@@ -88,6 +89,22 @@ class QuizController extends Controller
 
         if ($quiz) return response()->json([
             'success' => true,
+        ]);
+    }
+
+    /**
+     * Get list of Quiz's Questions
+     */
+    public function questions(Quiz $quiz)
+    {
+        $questionsOfQuiz = DB::table('quizzes')
+        ->join('questions','quizzes.id','questions.quiz_id')
+        ->where('questions.quiz_id',$quiz->id)
+        ->get();
+
+        return response()->json([
+            'success' => true,
+            'payload' => QuizQuestionsResource::collection($questionsOfQuiz)
         ]);
     }
 }
