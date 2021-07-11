@@ -80,11 +80,11 @@ Route::group([
 
     Route::apiResource('answers', 'AnswerController');
 
-    // /**
-    //  * Incorrect Answer API
-    //  */
+    /**
+     * Incorrect Answer API
+     */
 
-    // Route::apiResource('incorrectanswer', 'IncorrectanswerController');
+    Route::apiResource('incorrectanswers', 'IncorrectanswerController');
 
     // /**
     //  * Reult API
