@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\IncorrectAnswer\StoreIncorrectRequest;
+use App\Http\Requests\IncorrectAnswer\UpdateIncorrectRequest;
 use App\Models\IncorrectAnswer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +31,7 @@ class IncorrectAnswerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreIncorrectRequest $request)
     {
         $request = $request->validated();
 
@@ -61,7 +63,7 @@ class IncorrectAnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, IncorrectAnswer $incorrectanswer)
+    public function update(UpdateIncorrectRequest $request, IncorrectAnswer $incorrectanswer)
     {
         $request = $request->validated();
 
