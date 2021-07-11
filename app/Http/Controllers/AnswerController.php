@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Answer\StoreAnswerRequest;
 use App\Http\Requests\Answer\UpdateAnswerRequest;
+use App\Http\Resources\Answer\AnswerResource;
 use App\Models\Answer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,7 @@ class AnswerController extends Controller
 
         return response()->json([
             'success' => true,
-            'payload' => $answers
+            'payload' => AnswerResource::collection($answers)
         ]);
     }
 
@@ -52,7 +53,7 @@ class AnswerController extends Controller
     {
         return response()->json([
             'success' => true,
-            'payload' => $answer
+            'payload' => AnswerResource::collection($answer)
         ]);
     }
 
