@@ -86,11 +86,11 @@ Route::group([
 
     Route::apiResource('incorrectanswers', 'IncorrectanswerController');
 
-    // /**
-    //  * Reult API
-    //  */
+    /**
+     * Reult API
+     */
 
-    // Route::apiResource('results', 'ResultController');
+    Route::apiResource('results', 'ResultController');
 
     // /**
     //  * User API
