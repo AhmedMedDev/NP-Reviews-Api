@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\IncorrectAnswer\StoreIncorrectRequest;
 use App\Http\Requests\IncorrectAnswer\UpdateIncorrectRequest;
+use App\Http\Resources\Incorrect\IncorrectAnswerResource;
 use App\Models\IncorrectAnswer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,7 @@ class IncorrectAnswerController extends Controller
 
         return response()->json([
             'success' => true,
-            'payload' => $incorrectanswers
+            'payload' => IncorrectAnswerResource::collection($incorrectanswers)
         ]);
     }
 
@@ -39,6 +40,7 @@ class IncorrectAnswerController extends Controller
 
         return response()->json([
             'success' => true,
+            'payload' => new IncorrectAnswerResource($incorrectanswer)
         ]);
     }
 
@@ -52,7 +54,7 @@ class IncorrectAnswerController extends Controller
     {
         return response()->json([
             'success' => true,
-            'payload' => $incorrectanswer
+            'payload' => new IncorrectAnswerResource($incorrectanswer)
         ]);
     }
 
